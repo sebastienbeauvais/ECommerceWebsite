@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ECommerceWebsite.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 
 namespace ECommerceWebsite.Models
 {
-    public class Sale
+    public class Sale : ISale
     {
         [Key]
         public int Id { get; set; }
-        public int numItems { get; set; }
-        public decimal totalPrice { get; set; }
-        public decimal discountPrice { get; set; }
-        public int customerId { get; set; }
-        public DateTime dateOfPurchase { get; set; }
+        public int NumItems { get; set; }
+        public decimal TotalPrice { get; set; }
+        public decimal? DiscountPrice { get; set; }
+        public int CustomerId { get; set; }
+        public DateTime DateOfPurchase { get; set; }
     }
 }
