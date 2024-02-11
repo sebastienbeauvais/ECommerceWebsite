@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace ECommerceWebsite.Models
 {
@@ -7,11 +8,21 @@ namespace ECommerceWebsite.Models
     {
         //Product table
         public DbSet<Product> Product { get; set; }
+        public DbSet<Manufacturer> Manufacturer { get; set; }
+        public DbSet<Customer> Customer { get; set; }
+        public DbSet<Sale> Sale { get; set; }
 
-        // Connection to db
+        // Config db
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=?;database=?;uid=?;pwd=?");
+            var _configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+            
+            string eCommerceDbConnectionString = _configuration.GetConnectionString("eCommerceDb");
+
+            optionsBuilder.UseMySQL(eCommerceDbConnectionString);
             //base.OnConfiguring(optionsBuilder);
         }
     }

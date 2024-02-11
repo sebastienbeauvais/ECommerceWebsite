@@ -1,5 +1,5 @@
 -- Create the database if not exists
-CREATE DATABASE IF NOT EXISTS ecommercestore;
+CREATE DATABASE IF NOT EXISTS ecommerce_db;
 
 -- Switch to the created database
 USE ecommercestore;
